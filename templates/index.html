@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Python Output</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Live Python Output</h1>
+  <div id="output">Loading...</div>
+
+  <script>
+    async function fetchData() {
+      const response = await fetch('/data');
+      const data = await response.json();
+      document.getElementById('output').innerText = "Python Output: " + data.value;
+    }
+
+    // Fetch new data every 2 seconds
+    setInterval(fetchData, 200000);
+    fetchData();
+  </script>
+</body>
+</html>
